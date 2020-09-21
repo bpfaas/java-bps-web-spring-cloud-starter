@@ -7,7 +7,7 @@
 <dependency>
     <groupId>com.bpfaas</groupId>
     <artifactId>bps-web-spring-cloud-starter</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
 </dependency>
 ```
 
