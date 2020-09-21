@@ -6,7 +6,7 @@
 
     <groupId>com.bpfaas</groupId>
     <artifactId>bps-web-spring-cloud-starter</artifactId>
-    <version>${revision}</version>
+    <version>${revision}${revision.profile}</version>
     <packaging>jar</packaging>
 
     <name>bps-web-spring-cloud-starter</name>
@@ -38,6 +38,11 @@
     <properties>
         <!-- Project revision -->
         <revision>0.0.3</revision>
+        <revision.profile></revision.profile>
+        <repository.snapshotId>ossrh</repository.snapshotId>
+        <repository.snapshotUrl>https://oss.sonatype.org/content/repositories/snapshots/</repository.snapshotUrl>
+        <repository.releaseId>ossrh</repository.releaseId>
+        <repository.releaseUrl>https://oss.sonatype.org/service/local/staging/deploy/maven2/</repository.releaseUrl>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -114,12 +119,12 @@
             </build>
             <distributionManagement>
                 <snapshotRepository>
-                    <id>ossrh</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+                    <id>${repository.snapshotId}</id>
+                    <url>{repository.snapshotUrl}</url>
                 </snapshotRepository>
                 <repository>
-                    <id>ossrh</id>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                    <id>${repository.releaseId}</id>
+                    <url>${repository.releaseUrl}</url>
                 </repository>
             </distributionManagement>
         </profile>
