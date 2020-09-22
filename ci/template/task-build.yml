@@ -1,0 +1,32 @@
+###############################
+# task config
+###############################
+platform: linux
+image_resource:
+  type: docker-image
+  source:
+    repository: ((registry-url))/maven
+    tag: 0.0.5
+    username: ((registry-username))
+    password: ((registry-password))
+    insecure_registries: 
+    - ((registry-url))
+run:
+  path: /bin/sh
+  args:
+  - "-c"
+  - |
+    cd service-source
+    sed -i 's/<profiles>/<\!\-\-profiles>/' pom.xml
+    sed -i 's/<\/profiles>/<\/profiles\-\->/' pom.xml
+    mvn clean deploy \
+      "-Drevision.profile=-SNAPSHOT" \
+      "-Drepository.url=((nexus-url))" \
+      "-Drepository.snapshotUrl=((nexus-snapshotUrl))" \
+      "-Drepository.username=((nexus-username))" \
+      "-Drepository.password=((nexus-password))" \
+      "-DaltDeploymentRepository=remote-repository-snapshot::default::((nexus-snapshotUrl))"
+inputs:
+- name: service-source
+outputs:
+- name: service-package

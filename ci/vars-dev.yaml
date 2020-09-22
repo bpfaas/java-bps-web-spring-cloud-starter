@@ -1,0 +1,5 @@
+
+# serivce parameters.
+profile: dev
+step-timeout: 1m
+task-timeout: 5m

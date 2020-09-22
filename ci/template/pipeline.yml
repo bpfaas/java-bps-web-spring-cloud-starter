@@ -1,0 +1,68 @@
+
+###############################
+# var_soruces
+###############################
+var_sources:
+- name: my-vault
+  type: vault
+  config:
+    url: ((VAULT_ADDR))
+    # ca_cert: ((vault_ca))
+    insecure_skip_verify: true
+    client_token: ((VAULT_TOKEN))
+
+###############################
+# reference.
+###############################
+registry-source: &registry-source
+  username: ((my-vault:ci.registry-username))
+  password: ((my-vault:ci.registry-password))
+  insecure_registries: 
+  - ((my-vault:ci.registry-url))
+registry-var: &registry-var
+  registry-url: ((my-vault:ci.registry-url))
+  registry-username: ((my-vault:ci.registry-username))
+  registry-password: ((my-vault:ci.registry-password))
+nexus-var: &nexus-var
+  nexus-url: ((my-vault:ci.nexus-url))/repository/bpfaas-group/
+  nexus-snapshotUrl: ((my-vault:ci.nexus-url))/repository/bpfaas-snapshot/
+  nexus-username: ((my-vault:ci.nexus-username))
+  nexus-password: ((my-vault:ci.nexus-password))
+
+###############################
+# resource types.
+###############################
+resource_types:
+
+###############################
+# resources.
+###############################
+resources:
+# 项目源码.
+- name: service-source
+  type: git
+  icon: github
+  source:
+    branch: ((profile))
+    uri: git@github.com:bpfaas/lib-java-bps-web-spring-cloud-starter.git
+    private_key: ((git-privateKey))
+    fetch_tags: true
+
+###############################
+# jobs.
+###############################
+jobs:
+- name: build-service
+  interruptible: true # 允许立即abort
+  plan:
+  # 获取代码.
+  - get: service-source
+    timeout: ((step-timeout))
+    trigger: true
+  # 编译.
+  - task: build-and-deploy
+    timeout: ((task-timeout))
+    file: service-source/ci/template/task-build.yml
+    vars:
+      <<: *registry-var
+      <<: *nexus-var

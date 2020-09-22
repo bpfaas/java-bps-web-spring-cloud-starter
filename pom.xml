@@ -37,8 +37,8 @@
 
     <properties>
         <!-- Project revision -->
-        <revision>0.0.3</revision>
-        <revision.profile></revision.profile>
+        <revision>0.0.4</revision>
+        <revision.profile>-SNAPSHOT</revision.profile>
         <repository.snapshotId>ossrh</repository.snapshotId>
         <repository.snapshotUrl>https://oss.sonatype.org/content/repositories/snapshots/</repository.snapshotUrl>
         <repository.releaseId>ossrh</repository.releaseId>
@@ -54,7 +54,7 @@
         <spring.boot.version>2.2.7.RELEASE</spring.boot.version>
         <spring.cloud-starter-openfeign.version>2.2.3.RELEASE</spring.cloud-starter-openfeign.version>
 
-        <bp.common.version>0.0.3</bp.common.version>
+        <bp.common.version>0.0.3${revision.profile}</bp.common.version>
         <jackson.version>2.11.2</jackson.version>
         <lombok.version>1.18.12</lombok.version>
         <febs.identify.version>0.0.2</febs.identify.version>
