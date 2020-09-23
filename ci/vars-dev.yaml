@@ -1,4 +1,6 @@
 
+registry_mirror: hub-mirror.c.163.com
+
 # serivce parameters.
 profile: dev
 step-timeout: 1m

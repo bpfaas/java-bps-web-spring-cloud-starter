@@ -14,15 +14,23 @@ var_sources:
 ###############################
 # reference.
 ###############################
-registry-source: &registry-source
+# registry mirror 用于拉取共用镜像.
+registry-source-public: &registry-source-public
+  registry_mirror: http://((registry_mirror))/
+  official_registry: ((registry_mirror))
+# registry private 用于私仓.
+registry-source-private: &registry-source-private
   username: ((my-vault:ci.registry-username))
   password: ((my-vault:ci.registry-password))
   insecure_registries: 
   - ((my-vault:ci.registry-url))
+  official_registry: ((registry_mirror))
+# 传递给 task的registry信息.
 registry-var: &registry-var
   registry-url: ((my-vault:ci.registry-url))
   registry-username: ((my-vault:ci.registry-username))
   registry-password: ((my-vault:ci.registry-password))
+  registry-mirror: http://((registry_mirror))/
 nexus-var: &nexus-var
   nexus-url: ((my-vault:ci.nexus-url))/repository/bpfaas-group/
   nexus-snapshotUrl: ((my-vault:ci.nexus-url))/repository/bpfaas-snapshot/
