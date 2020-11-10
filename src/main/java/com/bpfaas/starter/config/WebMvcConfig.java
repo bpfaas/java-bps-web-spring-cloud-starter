@@ -6,11 +6,16 @@
 */
 package com.bpfaas.starter.config;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -24,6 +29,14 @@ import com.bpfaas.starter.WebHandlerInterceptorAdapter;
 @ConditionalOnProperty(name = "bp.web.enable", havingValue = "true")
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
+
+  @Bean
+  public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
+    Map<Class<?>, JsonSerializer<?>> map = new HashMap<>();
+    map.put(Long.class, ToStringSerializer.instance);
+    return builder -> builder.serializersByType(map);
+  }
+
   @Bean
   ObjectMapper objectMapper() {
     return JsonUtils.getObjectMapper();
