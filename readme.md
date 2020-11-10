@@ -33,6 +33,9 @@ bp.web.enable = true                    # enable web starter.
 # redis
 bp.web.redis.enable = true              # enable redis.
 
+# minio file
+bp.web.minio.enable = true              # enable minio.
+
 # log
 bp.web.logging.feignClientLevel = "full"  # log feign client request (cannot be dynamic refresh).
 bp.web.logging.level = "full"             # log level.
@@ -43,6 +46,31 @@ bp.web.logging.level = "full"             # log level.
 ```properties
 logging.level.com.bpfaas.*: DEBUG
 ```
+
+如果使用Minio，请设置
+
+```properties
+##配置minio服务器地址
+bp.web.minio.minio.endPoint = http://10.210.200.7:9000
+##配置minio服务accessKey
+bp.web.minio.accessKey = minio
+##配置minio服务securityKey
+bp.web.minio.securityKey = bpfaas123
+##配置minio服务bucketName
+bp.web.minio.bucketName = faas
+##配置minio服务bucketUrl
+bp.web.minio.bucketUrl = http://10.210.200.7:9000/faas/
+```
+
+```java
+@Autowired
+private MinioClient minioClient;
+```
+## MinioClient API
+
+查看[MinioClient](https://docs.min.io/docs/java-client-api-reference)
+
+## 
 
 ## 格式化 Response body
 

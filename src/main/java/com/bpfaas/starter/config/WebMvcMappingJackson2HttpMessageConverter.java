@@ -33,7 +33,7 @@ public class WebMvcMappingJackson2HttpMessageConverter extends MappingJackson2Ht
   protected void writeInternal(Object object, Type type, HttpOutputMessage outputMessage) throws IOException {
     if (object instanceof String) {
 
-      Charset charset = this.getDefaultCharset();
+      Charset charset = Charset.defaultCharset();
       MediaType contentType = outputMessage.getHeaders().getContentType();
       if (contentType != null && contentType.getCharset() != null) {
         charset = contentType.getCharset();

@@ -2,6 +2,7 @@ package com.bpfaas.starter.config;
 
 import java.time.Duration;
 
+import com.bpfaas.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
@@ -64,7 +65,7 @@ public class WebRedisConnectionFactoryConfig {
     if (clusterProperties.getMaxRedirects() != null) {
       config.setMaxRedirects(clusterProperties.getMaxRedirects());
     }
-    if (redisProperties.getPassword() != null) {
+    if (!StringUtils.isEmpty(redisProperties.getPassword())) {
       config.setPassword(RedisPassword.of(redisProperties.getPassword()));
     }
 
@@ -77,7 +78,7 @@ public class WebRedisConnectionFactoryConfig {
     // config.
     RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(redisProperties.getHost(),
         redisProperties.getPort());
-    if (redisProperties.getPassword() != null) {
+    if (!StringUtils.isEmpty(redisProperties.getPassword())) {
       config.setPassword(RedisPassword.of(redisProperties.getPassword()));
     }
 

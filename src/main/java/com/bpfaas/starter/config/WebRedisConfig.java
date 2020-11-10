@@ -32,13 +32,6 @@ public class WebRedisConfig {
 
   @Bean
   @RefreshScope
-  ReactiveStringRedisTemplate reactiveStringRedisTemplate(
-      @Qualifier("lettuceConnectionFactory") LettuceConnectionFactory connectionFactory) {
-    return new ReactiveStringRedisTemplate(connectionFactory);
-  }
-
-  @Bean
-  @RefreshScope
   public RedisTemplate<String, Serializable> redisTemplate(
       @Qualifier("lettuceConnectionFactory") LettuceConnectionFactory connectionFactory) {
     RedisTemplate<String, Serializable> redisTemplate = new RedisTemplate<>();
