@@ -1,2 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.bpfaas.starter.WebAutoConfigure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.bpfaas.starter.file.WebMinioConfig
