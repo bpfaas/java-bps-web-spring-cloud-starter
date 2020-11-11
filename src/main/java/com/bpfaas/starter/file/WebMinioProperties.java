@@ -1,4 +1,4 @@
-package com.bpfaas.starter.config;
+package com.bpfaas.starter.file;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -17,7 +17,5 @@ public class WebMinioProperties {
     private String securityKey;
 
     private String bucketName;
-
-    private String bucketUrl;
 
 }

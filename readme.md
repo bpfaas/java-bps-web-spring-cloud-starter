@@ -7,7 +7,7 @@
 <dependency>
     <groupId>com.bpfaas</groupId>
     <artifactId>bps-web-spring-cloud-starter</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.5</version>
 </dependency>
 ```
 
@@ -51,15 +51,13 @@ logging.level.com.bpfaas.*: DEBUG
 
 ```properties
 ##配置minio服务器地址
-bp.web.minio.minio.endPoint = http://10.210.200.7:9000
+bp.web.minio.endPoint = http://10.210.200.7:9000
 ##配置minio服务accessKey
 bp.web.minio.accessKey = minio
 ##配置minio服务securityKey
 bp.web.minio.securityKey = bpfaas123
 ##配置minio服务bucketName
 bp.web.minio.bucketName = faas
-##配置minio服务bucketUrl
-bp.web.minio.bucketUrl = http://10.210.200.7:9000/faas/
 ```
 
 ```java
