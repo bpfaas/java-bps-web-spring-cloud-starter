@@ -142,6 +142,7 @@ public class WebAdviceController implements ResponseBodyAdvice<Object> {
         return new Msg<>(ErrorCode.NOT_FOUND);
     }
 
+    
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
         return true;
