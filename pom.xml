@@ -32,7 +32,7 @@
         <spring.boot.version>2.2.7.RELEASE</spring.boot.version>
         <spring.cloud-starter-openfeign.version>2.2.3.RELEASE</spring.cloud-starter-openfeign.version>
 
-        <bp.common.version>0.0.3${revision.profile}</bp.common.version>
+        <bp.common.version>0.0.4${revision.profile}</bp.common.version>
         <jackson.version>2.11.2</jackson.version>
         <lombok.version>1.18.12</lombok.version>
         <febs.identify.version>0.0.2</febs.identify.version>
